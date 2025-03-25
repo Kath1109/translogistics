@@ -1,4 +1,4 @@
-package com.translogistics.controllers;
+package com.translogistics.controller;
 
 import com.translogistics.model.User;
 import com.translogistics.repository.UserRepository;
