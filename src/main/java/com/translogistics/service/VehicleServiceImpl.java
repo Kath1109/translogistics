@@ -2,24 +2,21 @@ package com.translogistics.service;
 
 import com.translogistics.model.Vehicle;
 import com.translogistics.repository.VehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementation of the VehicleService interface.
+ * Service implementation for vehicle-related operations.
  */
 @Service
-public class VehicleServiceImpl implements VehicleService {
+public class VehicleServiceImpl implements VehicleService {  
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
 
-    @Override
-    public Vehicle saveVehicle(Vehicle vehicle) {
-        vehicle.setStatus("Disponible"); // Set initial status to "Disponible"
-        return vehicleRepository.save(vehicle);
+    public VehicleServiceImpl(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
     }
 
     @Override
@@ -33,14 +30,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle updateVehicle(Long id, Vehicle updatedVehicle) {
-        return vehicleRepository.findById(id).map(vehicle -> {
-            vehicle.setPlate(updatedVehicle.getPlate());
-            vehicle.setModel(updatedVehicle.getModel());
-            vehicle.setYear(updatedVehicle.getYear());
-            vehicle.setType(updatedVehicle.getType());
-            return vehicleRepository.save(vehicle);
-        }).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+    public Vehicle createVehicle(Vehicle vehicle) {
+        return vehicleRepository.save(vehicle);
     }
 
     @Override

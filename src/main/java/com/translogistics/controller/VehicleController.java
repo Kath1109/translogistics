@@ -1,5 +1,4 @@
-package com.translogistics.controller.controller;
-
+package com.translogistics.controller;
 
 import com.translogistics.model.Vehicle;
 import com.translogistics.service.VehicleService;
@@ -43,10 +42,10 @@ public class VehicleController {
      * Create a new vehicle.
      */
     @PostMapping
-    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
-        return vehicleService.createVehicle(vehicle);
+    public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+        Vehicle newVehicle = vehicleService.createVehicle(vehicle);
+        return ResponseEntity.ok(newVehicle);
     }
-
 
     /**
      * Delete a vehicle by ID.

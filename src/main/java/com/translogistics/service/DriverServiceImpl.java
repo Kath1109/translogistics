@@ -2,23 +2,21 @@ package com.translogistics.service;
 
 import com.translogistics.model.Driver;
 import com.translogistics.repository.DriverRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementation of the DriverService interface.
+ * Service implementation for driver-related operations.
  */
 @Service
-public class DriverServiceImpl implements DriverService {
+public class DriverServiceImpl implements DriverService {  // 👈 Aquí debe implementar DriverService
 
-    @Autowired
-    private DriverRepository driverRepository;
+    private final DriverRepository driverRepository;
 
-    @Override
-    public Driver saveDriver(Driver driver) {
-        return driverRepository.save(driver);
+    public DriverServiceImpl(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
     }
 
     @Override
@@ -32,16 +30,8 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver updateDriver(Long id, Driver updatedDriver) {
-        return driverRepository.findById(id).map(driver -> {
-            driver.setFullName(updatedDriver.getFullName());
-            driver.setIdType(updatedDriver.getIdType());
-            driver.setIdNumber(updatedDriver.getIdNumber());
-            driver.setLicenseNumber(updatedDriver.getLicenseNumber());
-            driver.setLicenseExpiration(updatedDriver.getLicenseExpiration());
-            driver.setYearsExperience(updatedDriver.getYearsExperience());
-            return driverRepository.save(driver);
-        }).orElseThrow(() -> new RuntimeException("Driver not found"));
+    public Driver createDriver(Driver driver) {
+        return driverRepository.save(driver);
     }
 
     @Override

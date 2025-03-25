@@ -42,18 +42,9 @@ public class DriverController {
      * Create a new driver.
      */
     @PostMapping
-    public Driver createDriver(@RequestBody Driver driver) {
-        return driverService.createDriver(driver);
-    }
-
-    /**
-     * Update an existing driver.
-     */
-    @PutMapping("/{id}")
-    public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @RequestBody Driver driver) {
-        return driverService.updateDriver(id, driver)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Driver> createDriver(@RequestBody Driver driver) {
+        Driver newDriver = driverService.createDriver(driver);
+        return ResponseEntity.status(201).body(newDriver); // 201 Created
     }
 
     /**
@@ -61,7 +52,10 @@ public class DriverController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDriver(@PathVariable Long id) {
+        if (!driverService.getDriverById(id).isPresent()) {
+            return ResponseEntity.notFound().build(); // Retorna 404 si no se encuentra
+        }
         driverService.deleteDriver(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build(); // 204 No Content
     }
 }
