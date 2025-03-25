@@ -1,8 +1,8 @@
-package com.translogistics.repositories;
+package com.translogistics.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.translogistics.models.User;
+import com.translogistics.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 }

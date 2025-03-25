@@ -1,7 +1,7 @@
 package com.translogistics.controllers;
 
-import com.translogistics.models.User;
-import com.translogistics.repositories.UserRepository;
+import com.translogistics.model.User;
+import com.translogistics.repository.UserRepository;
 
 import org.springframework.web.bind.annotation.*;
 

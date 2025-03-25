@@ -1,4 +1,4 @@
-package com.translogistics.models;
+package com.translogistics.model;
 
 
 import jakarta.persistence.*;
