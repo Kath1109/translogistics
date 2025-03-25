@@ -1,42 +1,41 @@
 package com.translogistics.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDate;
 
+/**
+ * Entity class representing a Driver.
+ */
 @Entity
-@Table(name = "conductores")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Table(name = "drivers")
 public class Driver {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Unique identifier
 
     @Column(nullable = false)
-    private String nombreCompleto;
+    private String fullName; // Full name of the driver
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoIdentificacion tipoIdentificacion; // C.C / C.E
+    private String idType; // Identification type (C.C or C.E)
 
     @Column(nullable = false, unique = true)
-    private String numeroIdentificacion;
+    private String idNumber; // Unique identification number
 
     @Column(nullable = false, unique = true)
-    private String numeroLicencia;
+    private String licenseNumber; // Unique driver’s license number
 
     @Column(nullable = false)
-    private LocalDate fechaVencimientoLicencia;
+    private LocalDate licenseExpiration; // Expiration date of the license
 
     @Column(nullable = false)
-    private int añosExperiencia;
+    private Integer yearsExperience; // Years of driving experience
 
     @Lob
-    @Column(nullable = true)
-    private byte[] fotoLicencia; // Formato JPEG/PNG (opcional)
+    private byte[] licensePhoto; // Optional license photo (JPEG/PNG)
 }
