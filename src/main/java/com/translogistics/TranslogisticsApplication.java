@@ -1,13 +1,11 @@
-package com.translogistics.translogistics;
+package com.translogistics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TranslogisticsApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(TranslogisticsApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(TranslogisticsApplication.class, args);
+    }
 }
